@@ -23,11 +23,24 @@ class RegistrationController {
     AttendeeService attendeeService;
 
 
+    @RequestMapping("/landing")
+    String getLanding(){
+        return "landing";
+    }
+
+
+    @RequestMapping(value = "/version")
+    @ResponseBody
+    public String version(){
+        return "V 1.0";
+    }
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     String home(Model model) {
         model.addAttribute("attendees", attendeeService.getAttendee());
         return "admin";
     }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String conference(Model model) {
